@@ -1,0 +1,48 @@
+<div id="login">
+    <h3 class="text-center text-white pt-5">Login form</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" #signUpForm="ngForm" (ngSubmit)="getSignUpDetails(signUpForm)" method="post">
+                        <h3 class="text-center text-info">SignUp</h3>
+
+                        <div class="form-group">
+                            <label for="email" class="text-info">Email:</label><br>
+                            <input type="email" email class="form-control" name="email" placeholder="Enter email" [(ngModel)]='email' #txtEmail='ngModel' required>
+                        </div>
+                        <div *ngIf="txtEmail.touched && txtEmail.errors?.required" class="alert alert-danger">
+                            email is required
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="text-info">Password:</label><br>
+                            <input type="text" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="password" #txtPassword='ngModel' minlength="1" maxlength="5" required>
+                        </div>
+                        <div *ngIf="txtPassword.touched && txtPassword.errors?.required" class="alert alert-danger">
+                            password is required
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword" class="text-info">Confirm Password:</label><br>
+                            <input type="text" class="form-control" placeholder="Enter confirm password" name="txtConfPassword" [(ngModel)]="confirmPassword" #txtConfPassword='ngModel' required [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <ng-container *ngIf="txtConfPassword.valid">
+                            <div [hidden]="txtPassword.value == txtConfPassword.value" class="alert alert-danger">
+                                Password is mismatch
+                            </div>
+                        </ng-container>
+
+                        <div class="form-group">
+                            <br>
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" [disabled]="!signUpForm.valid || txtPassword.value != txtConfPassword.value">
+                        </div>
+                        <div id="register-link" class="text-right">
+                            <a (click)="navigateToLogin()" class="text-info">already have an account?</a>
+                        </div>
+                    </form><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

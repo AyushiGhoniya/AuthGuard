@@ -1,0 +1,52 @@
+<div id="login">
+    <h3 class="text-center text-white pt-5">Login form</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6" [hidden]="!dataFetched">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" #loginForm="ngForm" (ngSubmit)="getLoginDetails(loginForm)" method="post">
+                        <h3 class="text-center text-info">Login</h3>
+
+                        <div class="form-group">
+                            <label for="email" class="text-info">Email:</label><br>
+                            <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]='email' #txtEmail='ngModel' required>
+                        </div>
+                        <div *ngIf="txtEmail.touched && txtEmail.errors?.required" class="alert alert-danger">
+                            email is required
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="text-info">Password:</label><br>
+                            <input type="text" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="password" #txtPassword='ngModel' minlength="1" maxlength="5" required>
+                        </div>
+                        <div *ngIf="txtPassword.touched && txtPassword.errors?.required" class="alert alert-danger">
+                            password is required
+                        </div>
+
+                        <div class="form-group">
+                            <br>
+                            <input type="submit" class="btn btn-info btn-md" value="submit" [disabled]="!loginForm.valid">
+                        </div>
+                        <div id="register-link" class="text-right">
+                            <a (click)="navigateToSignUp()" class="text-info">Register here</a>
+                        </div>
+                    </form><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="!dataFetched">
+    <div style="text-align: center;">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,36 @@
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" routerLink="/home">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <button (click)="logout()">Logout</button>
+        </form>
+      </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <h1 style="padding: 20px 0px; color: rgb(226, 224, 220);">Welcome,</h1>
+      <div class="card-columns">
+          <div class="card" id="card" *ngFor="let image of images">
+              <img class="card-img" src="{{ image.largeImageURL }}" alt="Card image">
+          </div>
+      </div>
+      <div style="text-align: center;">
+        <button style="margin-bottom: 50px;" (click)="loadImages()">Load More</button>
+      </div>
+    </div>
+  </div>
+</body>
